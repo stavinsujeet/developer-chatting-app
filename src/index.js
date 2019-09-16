@@ -57,11 +57,8 @@ io.on('connection',(socket)=>{
             return callback('profanity is not allowed');
         }
         const user = getuser(socket.id);
-        
-        if(user){
-            io.to(user.room).emit("message",generateMessage(user.username,message));
-            callback();
-        }
+        io.to(user.room).emit("message",generateMessage(user.username,message));
+        callback();
     })     
 
     socket.on('disconnect',()=>{
@@ -77,10 +74,8 @@ io.on('connection',(socket)=>{
 
     socket.on("sendLocation",(position,callback)=>{
         const user = getuser(socket.id);
-        if(user){
-            io.to(user.room).emit("message",generateMessage(user.username,message));
-            callback();
-        }
+        io.to(user.room).emit("message",generateMessage(user.username,message));
+        callback();
     })
 
 })
